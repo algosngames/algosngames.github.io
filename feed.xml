@@ -5,9 +5,75 @@
     <description>A blog of puzzles</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 02 Jan 2020 00:37:22 +0530</pubDate>
-    <lastBuildDate>Thu, 02 Jan 2020 00:37:22 +0530</lastBuildDate>
+    <pubDate>Sat, 01 Feb 2020 22:22:10 +0530</pubDate>
+    <lastBuildDate>Sat, 01 Feb 2020 22:22:10 +0530</lastBuildDate>
     <generator>Jekyll v4.0.0</generator>
+    
+      <item>
+        <title>The Last Hop</title>
+        <description>&lt;p&gt;This is continuation to ‘Rabbit Hops’. Find out the expected length of the rabbit’s last hop.&lt;/p&gt;
+
+&lt;!--more--&gt;
+&lt;p&gt;Repeating the problem statement of ‘Rabbit Hops’ for convenience:&lt;/p&gt;
+
+&lt;p&gt;A Rabbit is hopping along a straight line and for every hop it covers a random distance between 0 and 1 unit. What is the expected number of hops required to cover a unit distance?&lt;/p&gt;
+
+&lt;h2 id=&quot;solution&quot;&gt;Solution&lt;/h2&gt;
+
+&lt;p&gt;Say, f(x) represents the length of the last hop given that the rabbit has already covered a distance of x. Let y be the distance covered in next hop.&lt;/p&gt;
+
+&lt;p&gt;Then,&lt;/p&gt;
+&lt;div class=&quot;mathblock&quot;&gt;&lt;script type=&quot;math/tex; mode=display&quot;&gt; f(x) = \left\{\begin{matrix}
+f(x+y), 0 \leqslant y &lt; 1-x \\ 
+y\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\, ,1-x \leqslant y \leqslant 1 
+\end{matrix}\right. &lt;/script&gt;&lt;/div&gt;
+
+&lt;p&gt;Let E(x) represent the expected length of the last hop given that the rabbit has already covered a distance of x. (Here we are abusing the notation we are using E(x) to represent E(f(x)))&lt;/p&gt;
+
+&lt;p&gt;So,&lt;/p&gt;
+&lt;div class=&quot;mathblock&quot;&gt;&lt;script type=&quot;math/tex; mode=display&quot;&gt; E(x)=\int_{y=0}^{1-x}E(x+y) \cdot P(y)dy+ \int_{y=1-x}^{1}y \cdot P(y)dy&lt;/script&gt;&lt;/div&gt;
+
+&lt;p&gt;As every length between 0 to 1 is equally likely P(y)=1 for y belongs to 0,1. It’s a uniform distribution.&lt;/p&gt;
+&lt;div class=&quot;mathblock&quot;&gt;&lt;script type=&quot;math/tex; mode=display&quot;&gt; E(x)=\int_{y=0}^{1-x}E(x+y)\cdot dy+ \int_{y=1-x}^{1}y \cdot dy &lt;/script&gt;&lt;/div&gt;
+
+&lt;p&gt;Simplifying this,&lt;/p&gt;
+&lt;div class=&quot;mathblock&quot;&gt;&lt;script type=&quot;math/tex; mode=display&quot;&gt; E(x)=\int_{y=0}^{1-x}E(x+y)\cdot dy + \frac{-x^2+2x}{2} &lt;/script&gt;&lt;/div&gt;
+
+&lt;p&gt;Say,&lt;/p&gt;
+&lt;div class=&quot;mathblock&quot;&gt;&lt;script type=&quot;math/tex; mode=display&quot;&gt; F(t)=\int E(t)\cdot dt &lt;/script&gt;&lt;/div&gt;
+
+&lt;p&gt;Using above equation,&lt;/p&gt;
+&lt;div class=&quot;mathblock&quot;&gt;&lt;script type=&quot;math/tex; mode=display&quot;&gt;E(x)=F(x+1-x)-F(x)+\frac{-x^2+2x}{2}=F(1)-F(x)+\frac{-x^2+2x}{2} &lt;/script&gt;&lt;/div&gt;
+
+&lt;p&gt;Differentiating on both sides,&lt;/p&gt;
+&lt;div class=&quot;mathblock&quot;&gt;&lt;script type=&quot;math/tex; mode=display&quot;&gt;\frac{\mathrm{d}E(x)}{\mathrm{d} x} = -E(x)-x+1&lt;/script&gt;&lt;/div&gt;
+
+&lt;p&gt;Solving above differential equation, we’ll obtain&lt;/p&gt;
+&lt;div class=&quot;mathblock&quot;&gt;&lt;script type=&quot;math/tex; mode=display&quot;&gt;E(x)=2-x+c \cdot e^{-x}&lt;/script&gt;&lt;/div&gt;
+
+&lt;p&gt;As rabbit gets too close to the 1 unit mark, the number of steps it has to take from there gets close to 1. Hence, expected length of the last hop as rabbit gets too close to the 1 unit mark is 0.5 as any value between 0 to 1 is equiprobable. i.e,&lt;/p&gt;
+&lt;div class=&quot;mathblock&quot;&gt;&lt;script type=&quot;math/tex; mode=display&quot;&gt;\lim_{x\rightarrow 1}E(x)=\frac{1}{2}&lt;/script&gt;&lt;/div&gt;
+
+&lt;p&gt;Using this,&lt;/p&gt;
+&lt;div class=&quot;mathblock&quot;&gt;&lt;script type=&quot;math/tex; mode=display&quot;&gt;2 -1 + c \cdot e^{-1} = \frac{1}{2} \Rightarrow c = \frac{-e}{2} &lt;/script&gt;&lt;/div&gt;
+
+&lt;p&gt;So,&lt;/p&gt;
+&lt;div class=&quot;mathblock&quot;&gt;&lt;script type=&quot;math/tex; mode=display&quot;&gt;E(x)=2-x-e^{\frac{1-x}{2}}&lt;/script&gt;&lt;/div&gt;
+
+&lt;p&gt;And we need E(0), as that would be the expected length of the last hop when starting point is zero unit mark. So, the number of hops required is&lt;/p&gt;
+&lt;div class=&quot;mathblock&quot;&gt;&lt;script type=&quot;math/tex; mode=display&quot;&gt;2-\frac{e}{2} \approx 0.641 &lt;/script&gt;&lt;/div&gt;
+
+</description>
+        <pubDate>Sat, 01 Feb 2020 00:00:00 +0530</pubDate>
+        <link>http://localhost:4000/articles/20/the-last-hop</link>
+        <guid isPermaLink="true">http://localhost:4000/articles/20/the-last-hop</guid>
+        
+        
+        <category>jekyll</category>
+        
+        <category>css</category>
+        
+      </item>
     
       <item>
         <title>Rabbit Hops</title>
